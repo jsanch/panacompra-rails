@@ -1,0 +1,45 @@
+- model_class = Compra
+.page-header
+  %h1=t '.title', :default => model_class.model_name.human.titleize
+
+%p
+  %strong= model_class.human_attribute_name(:entidad) + ':'
+  %br
+  = @compra.entidad
+%p
+  %strong= model_class.human_attribute_name(:precio) + ':'
+  %br
+  = @compra.precio
+%p
+  %strong= model_class.human_attribute_name(:proponente) + ':'
+  %br
+  = @compra.proponente
+%p
+  %strong= model_class.human_attribute_name(:categoria) + ':'
+  %br
+  = @compra.categoria
+%p
+  %strong= model_class.human_attribute_name(:url) + ':'
+  %br
+  = @compra.url
+%p
+  %strong= model_class.human_attribute_name(:fecha) + ':'
+  %br
+  = @compra.fecha
+%p
+  %strong= model_class.human_attribute_name(:description) + ':'
+  %br
+  = @compra.description
+%p
+  %strong= model_class.human_attribute_name(:acto) + ':'
+  %br
+  = @compra.acto
+%p
+  %strong= model_class.human_attribute_name(:compra_id) + ':'
+  %br
+  = @compra.compra_id
+
+.form-actions
+  = link_to t('.back', :default => t("helpers.links.back")), compras_path, :class => 'btn'
+  = link_to t('.edit', :default => t("helpers.links.edit")), edit_compra_path(@compra), :class => 'btn'
+  = link_to t('.destroy', :default => t("helpers.links.destroy")), compra_path(@compra), :method => "delete", :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) }, :class => 'btn btn-danger'

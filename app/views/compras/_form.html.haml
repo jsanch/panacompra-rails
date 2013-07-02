@@ -1,0 +1,40 @@
+= form_for @compra, :html => { :class => 'form-horizontal' } do |f|
+  .control-group
+    = f.label :entidad, :class => 'control-label'
+    .controls
+      = f.text_field :entidad, :class => 'text_field'
+  .control-group
+    = f.label :precio, :class => 'control-label'
+    .controls
+      = f.text_field :precio, :class => 'text_field'
+  .control-group
+    = f.label :proponente, :class => 'control-label'
+    .controls
+      = f.text_field :proponente, :class => 'text_field'
+  .control-group
+    = f.label :categoria, :class => 'control-label'
+    .controls
+      = f.number_field :categoria, :class => 'number_field'
+  .control-group
+    = f.label :url, :class => 'control-label'
+    .controls
+      = f.text_field :url, :class => 'text_field'
+  .control-group
+    = f.label :fecha, :class => 'control-label'
+    .controls
+      = f.date_select :fecha, :class => 'date_select'
+  .control-group
+    = f.label :description, :class => 'control-label'
+    .controls
+      = f.text_area :description, :class => 'text_area'
+  .control-group
+    = f.label :acto, :class => 'control-label'
+    .controls
+      = f.text_field :acto, :class => 'text_field'
+  .control-group
+    = f.label :compra_id, :class => 'control-label'
+    .controls
+      = f.number_field :compra_id, :class => 'number_field'
+  .form-actions
+    = f.submit nil, :class => 'btn btn-primary'
+    = link_to t('.cancel', :default => t("helpers.links.cancel")), compras_path, :class => 'btn'

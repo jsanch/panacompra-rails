@@ -18,3 +18,4 @@ gem "rspec-rails", :group => [:test, :development]
 gem "factory_girl_rails", :group => [:test, :developmen]
 
 gem "devise"
+gem 'thin'

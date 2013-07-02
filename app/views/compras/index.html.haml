@@ -1,0 +1,37 @@
+- model_class = Compra
+.page-header
+  %h1=t '.title', :default => model_class.model_name.human.pluralize.titleize
+%table.table.table-striped
+  %thead
+    %tr
+      %th= model_class.human_attribute_name(:id)
+      %th= model_class.human_attribute_name(:entidad)
+      %th= model_class.human_attribute_name(:precio)
+      %th= model_class.human_attribute_name(:proponente)
+      %th= model_class.human_attribute_name(:categoria)
+      %th= model_class.human_attribute_name(:url)
+      %th= model_class.human_attribute_name(:fecha)
+      %th= model_class.human_attribute_name(:description)
+      %th= model_class.human_attribute_name(:acto)
+      %th= model_class.human_attribute_name(:compra_id)
+      %th= model_class.human_attribute_name(:created_at)
+      %th=t '.actions', :default => t("helpers.actions")
+  %tbody
+    - @compras.each do |compra|
+      %tr
+        %td= link_to compra.id, compra_path(compra)
+        %td= compra.entidad
+        %td= compra.precio
+        %td= compra.proponente
+        %td= compra.categoria
+        %td= compra.url
+        %td= compra.fecha
+        %td= compra.description
+        %td= compra.acto
+        %td= compra.compra_id
+        %td=l compra.created_at
+        %td
+          = link_to t('.edit', :default => t("helpers.links.edit")), edit_compra_path(compra), :class => 'btn btn-mini'
+          = link_to t('.destroy', :default => t("helpers.links.destroy")), compra_path(compra), :method => :delete, :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) }, :class => 'btn btn-mini btn-danger'
+
+= link_to t('.new', :default => t("helpers.links.new")), new_compra_path, :class => 'btn btn-primary'
