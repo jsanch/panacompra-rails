@@ -3,7 +3,8 @@ class ComprasController < ApplicationController
   # GET /compras
   # GET /compras.json
   def index
-    @compras = Compra.all
+    @compras = Compra.text_search(params[:query])
+    @compras = @compras.paginate(page: params[:page])
 
     respond_to do |format|
       format.html # index.html.erb
