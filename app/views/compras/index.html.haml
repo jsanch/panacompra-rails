@@ -12,8 +12,6 @@
       %th= model_class.human_attribute_name(:precio)
       %th= model_class.human_attribute_name(:proponente)
       %th= model_class.human_attribute_name(:category_id)
-      %th= model_class.human_attribute_name(:url)
-      %th= model_class.human_attribute_name(:fecha)
       %th= model_class.human_attribute_name(:description)
       %th= model_class.human_attribute_name(:acto)
   %tbody
@@ -24,9 +22,8 @@
         %td= compra.precio
         %td= compra.proponente
         %td= compra.category_id
-        %td= compra.url
-        %td= compra.fecha
         %td= compra.description
         %td= compra.acto
+        %td= link_to 'Detalle', 'http://panamacompra.gob.pa' + compra.url, class: 'btn btn-small'
 
 = will_paginate @compras
