@@ -1,1 +1,19 @@
-%h3 Home
+%h3 Estadisticas
+#chart_div{:style => "width: 1200px; height: 900px;"}
+- content_for :head do
+  :javascript
+    google.load("visualization", "1", {packages:["corechart"]});
+    google.setOnLoadCallback(drawChart);
+    function drawChart() {
+      var data = google.visualization.arrayToDataTable(#{compra_chart_data});
+
+      var options = {
+        title: 'Compras por Proponente',
+        sliceVisibilityThreshold: 1/200
+      };
+
+      var chart = new google.visualization.PieChart(document.getElementById('chart_div'));
+      chart.draw(data, options);
+    }
+
+

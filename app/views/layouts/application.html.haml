@@ -9,6 +9,7 @@
     %meta{:content => "", :name => "author"}
     = stylesheet_link_tag    "application", :media => "all"
     = javascript_include_tag "application"
+    %script{:src => "https://www.google.com/jsapi", :type => "text/javascript"}
     = csrf_meta_tags
     = yield(:head)
   %body
@@ -18,9 +19,8 @@
           = render 'layouts/navigation'
     #main{:role => "main"}
       .container
-        .content
-          .row
-            .span12
-              = render 'layouts/messages'
-              = yield
+        .row
+          .span12
+            = render 'layouts/messages'
+            = yield
           %footer
