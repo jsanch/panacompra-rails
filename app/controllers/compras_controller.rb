@@ -12,7 +12,7 @@ class ComprasController < ApplicationController
   # GET /compras
   # GET /compras.json
   def index
-    @compras = Compra.text_search(params[:query]).where('precio > ? AND precio < ?', params[:price_min]||0 , params[:price_max]||99999999999999999)
+    @compras = Compra.text_search(params[:query]).where('precio > ? AND precio < ?', params[:price_min].to_i , params[:price_max].to_i == 0 ? 99999999 : params[:price_max].to_i)
     @compras = @compras.paginate(page: params[:page]).order('ACTO DESC')
 
     respond_to do |format|
@@ -106,5 +106,4 @@ class ComprasController < ApplicationController
       end
     end
   end
-
 end
