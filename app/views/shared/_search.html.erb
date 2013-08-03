@@ -1,6 +1,6 @@
-<%= form_tag link, method: :get do %>
+<%= form_tag link, method: :get, class: 'form-inline' do %>
     <%= text_field_tag :query, params[:query] %>
-    <%= number_field_tag :price_min, params[:price_min], placeholder: 'Precio Minimo' %>
-    <%= number_field_tag :price_max, params[:price_max], placeholder: 'Precio Maximo' %>
-    <%= submit_tag "Search", name: nil %>
+    <%= number_field_tag :price_min, params[:price_min], placeholder: 'Precio Min', class: 'input-small' %>
+    <%= number_field_tag :price_max, params[:price_max], placeholder: 'Precio Max' , class: 'input-small'%>
+    <%= submit_tag "Search", name: nil, class: 'btn' %>
 <% end %>

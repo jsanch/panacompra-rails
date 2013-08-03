@@ -1,5 +1,14 @@
 class ComprasController < ApplicationController
   skip_before_filter :verify_authenticity_token
+
+  def all
+    @compras = Compra.all
+
+    respond_to do |format|
+      format.json { render json: @compras }
+    end
+  end
+
   # GET /compras
   # GET /compras.json
   def index

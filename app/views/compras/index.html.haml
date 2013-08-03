@@ -10,18 +10,14 @@
       %th= model_class.human_attribute_name(:entidad)
       %th= model_class.human_attribute_name(:precio)
       %th= model_class.human_attribute_name(:proponente)
-      %th= model_class.human_attribute_name(:category_id)
       %th= model_class.human_attribute_name(:description)
-      %th= model_class.human_attribute_name(:acto)
   %tbody
     - @compras.each do |compra|
       %tr
         %td= compra.entidad
         %td= compra.precio
         %td= compra.proponente
-        %td= compra.category_id
         %td= compra.description
-        %td= compra.acto
-        %td= link_to 'Detalle', 'http://panamacompra.gob.pa' + compra.url, class: 'btn btn-small'
+        %td= link_to 'Detalle', 'http://panamacompra.gob.pa' + compra.url, class: 'btn btn-small btn-primary'
 
 = will_paginate @compras
