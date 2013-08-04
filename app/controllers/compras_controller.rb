@@ -94,10 +94,9 @@ class ComprasController < ApplicationController
 
   def create_many
     @compras = initialize_many_from_json
-    @compras.each { |c| c.save }
 
     respond_to do |format|
-      if true
+      if Compra.import @compras
         format.html { render json: @compras, status: :created}
         format.json { render json: @compras, status: :created}
       else

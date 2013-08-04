@@ -22,3 +22,5 @@ gem 'thin'
 
 gem 'ransack'
 gem 'pg_search'
+
+gem 'activerecord-import'
