@@ -6,8 +6,8 @@ class Compra < ActiveRecord::Base
   include PgSearch
   pg_search_scope :search, against: [:entidad, :proponente, :description],
     using: {tsearch: {dictionary: "spanish", prefix: true}},
-    associated_against: {category: :name}
-  
+    ignoring: :accents
+
   def self.text_search(query)
     if query.present?
       search(query)
@@ -21,6 +21,12 @@ class Compra < ActiveRecord::Base
       self.done = true
     else
       self.done = false
+    end
+  end
+
+  def trigger_alerts
+    Alert.all.each do |alert|
+      AlertMailer.compra_alert(self).deliver if alert.detect(self)
     end
   end
 
