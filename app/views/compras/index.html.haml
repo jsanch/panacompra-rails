@@ -21,6 +21,6 @@
         %td= compra.proponente
         %td= compra.description
         %td= compra.acto
-        %td= link_to 'Detalle', 'http://panamacompra.gob.pa' + compra.url, class: 'btn btn-small btn-primary'
+        %td= link_to('Detalle', 'http://panamacompra.gob.pa' + compra.url, class: 'btn btn-small btn-primary') if compra.url
 
 = will_paginate @compras

@@ -2,13 +2,11 @@ class Compra < ActiveRecord::Base
   attr_accessible :acto, :categoria, :compra_id, :description, :entidad, :fecha, :precio, :proponente, :url, :category_id
 
   belongs_to :category
-  after_create :trigger_alerts
 
   include PgSearch
   pg_search_scope :search, against: [:entidad, :proponente, :description],
     using: {tsearch: {dictionary: "spanish", prefix: true}},
-    ignoring: :accents,
-    associated_against: {category: :name}
+    ignoring: :accents
 
   def self.text_search(query)
     if query.present?
