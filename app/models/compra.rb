@@ -10,10 +10,6 @@ class Compra < ActiveRecord::Base
     ignoring: :accents,
     associated_against: {category: :name}
 
-  pg_search_scope :description_search, against: [:description],
-    using: {tsearch: {dictionary: "spanish", prefix: true}},
-    ignoring: :accents
-  
   def self.text_search(query)
     if query.present?
       search(query)
