@@ -6,7 +6,10 @@ class Compra < ActiveRecord::Base
 
   include PgSearch
   pg_search_scope :search, against: [:proponente, :description],
-    using: {tsearch: {dictionary: 'spanish', prefix: false}},
+    using: {
+      tsearch: {dictionary: 'spanish', prefix: false, tsvector_column: 'tsv_description'},
+      tsearch: {dictionary: 'spanish', prefix: false, tsvector_column: 'tsv_proponente'}
+    },
     ignoring: :accents
 
   def self.text_search(query)
@@ -27,7 +30,7 @@ class Compra < ActiveRecord::Base
 
   def trigger_alerts
     Alert.all.each do |alert|
-      AlertMailer.compra_alert(self).deliver if alert.detect(self)
+      AlertMailer.compra_alert(self,alert.user.email).deliver if alert.detect(self)
     end
   end
 

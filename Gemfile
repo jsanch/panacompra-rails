@@ -19,9 +19,12 @@ gem "rspec-rails", :group => [:test, :development]
 gem "factory_girl_rails", :group => [:test, :developmen]
 
 gem "devise"
+gem 'cancan'
 gem 'thin'
 
 gem 'ransack'
 gem 'pg_search'
 
 gem 'activerecord-import'
+
+gem 'newrelic_rpm'

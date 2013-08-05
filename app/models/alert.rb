@@ -1,5 +1,6 @@
 class Alert < ActiveRecord::Base
   attr_accessible :descripcion, :entidad, :precio_max, :precio_min
+  belongs_to :user
 
   def detect(compra)
     return false if (compra.precio < self.precio_min or self.precio_min == '')
