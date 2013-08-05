@@ -5,7 +5,7 @@ class Compra < ActiveRecord::Base
 
   include PgSearch
   pg_search_scope :search, against: [:entidad, :proponente, :description],
-    using: {tsearch: {dictionary: "spanish", prefix: true}},
+    using: {tsearch: {dictionary: "spanish"}},
     ignoring: :accents
 
   def self.text_search(query)
