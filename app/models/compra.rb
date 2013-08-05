@@ -2,6 +2,7 @@ class Compra < ActiveRecord::Base
   attr_accessible :acto, :categoria, :compra_id, :description, :entidad, :fecha, :precio, :proponente, :url, :category_id
 
   belongs_to :category
+  after_create :trigger_alerts
 
   include PgSearch
   pg_search_scope :search, against: [:entidad, :proponente, :description],
@@ -30,6 +31,7 @@ class Compra < ActiveRecord::Base
   end
 
   def trigger_alerts
+    puts 'mooooooo'
     Alert.all.each do |alert|
       AlertMailer.compra_alert(self).deliver if alert.detect(self)
     end
