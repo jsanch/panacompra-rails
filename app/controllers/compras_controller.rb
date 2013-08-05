@@ -12,7 +12,9 @@ class ComprasController < ApplicationController
   # GET /compras
   # GET /compras.json
   def index
-    @compras = Compra.text_search(params[:query]).where('precio > ? AND precio < ?', params[:price_min].to_i , params[:price_max].to_i == 0 ? 99999999 : params[:price_max].to_i)
+    @compras = Compra.text_search(params[:query])
+    @compras = @compras.where('precio >= ?', params[:price_min]) if (params[:price_min] and params[:price_min] != '')
+    @compras = @compras.where('precio <= ?', params[:price_max]) if (params[:price_max] and params[:price_max] != '')
     @compras = @compras.where('entidad = ?', params[:entidad]) if (params[:entidad] and params[:entidad] != '')
     @compras = @compras.paginate(page: params[:page]).order('ACTO DESC')
     @entidades = Compra.select("DISTINCT(ENTIDAD)").map{|x| x.entidad}.sort
