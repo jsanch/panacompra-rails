@@ -2,7 +2,7 @@ class ComprasController < ApplicationController
   skip_before_filter :verify_authenticity_token
 
   def all
-    @compras = Compra.all
+    @compras = Compra.select('acto')
 
     respond_to do |format|
       format.json { render json: @compras }
