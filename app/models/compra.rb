@@ -8,6 +8,10 @@ class Compra < ActiveRecord::Base
     using: {tsearch: {dictionary: "spanish", prefix: true}},
     ignoring: :accents,
     associated_against: {category: :name}
+
+  pg_search_scope :description_search, against: [:description],
+    using: {tsearch: {dictionary: "spanish", prefix: true}},
+    ignoring: :accents
   
   def self.text_search(query)
     if query.present?
@@ -22,6 +26,12 @@ class Compra < ActiveRecord::Base
       self.done = true
     else
       self.done = false
+    end
+  end
+
+  def trigger_alerts
+    Alert.all.each do |alert|
+     AlertMailer.compra_alert(self) if alert.detect(self)
     end
   end
 
