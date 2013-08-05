@@ -8,6 +8,7 @@ Panacompra::Application.routes.draw do
     get 'all' ,on: :collection
     post 'create_many', on: :collection
   end
+  match '/stats' => 'home#index'
 
   root :to => "compras#index"
 end

@@ -1,13 +1,9 @@
 module HomeHelper
 
-  def compra_chart_data
-    (Compra.select("DISTINCT(PROPONENTE)").where('proponente != ?', 'empty')).map do |compra|
-      [ 
-        compra.proponente,
-        Compra.where("proponente = ?",compra.proponente).sum(:precio).to_f
-      ] 
+  def proponente_chart_data 
+    (Compra.sum(:precio, :group => :proponente)).map do |proponente,precio|
+      [ entidad,precio ] 
     end
   end
-
 
 end
