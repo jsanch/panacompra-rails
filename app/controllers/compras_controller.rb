@@ -14,6 +14,7 @@ class ComprasController < ApplicationController
   def index
     @compras = Compra.text_search(params[:query]).where('precio > ? AND precio < ?', params[:price_min].to_i , params[:price_max].to_i == 0 ? 99999999 : params[:price_max].to_i)
     @compras = @compras.paginate(page: params[:page]).order('ACTO DESC')
+    @entidades = Compra.select("DISTINCT(ENTIDAD)").map{|x| x.entidad}
 
     respond_to do |format|
       format.html # index.html.erb
