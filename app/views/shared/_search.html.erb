@@ -1,10 +1,10 @@
 <%= form_tag link, method: :get, class: 'form-inline' do %>
     <%= text_field_tag :query, params[:query], placeholder: 'Busqueda' %>
     <%= submit_tag "Buscar", name: nil, class: 'btn btn-success' %>
-    <a id='toggle_advanced_search' style='display:block;'>advanced search</a>
+    <a id='toggle_advanced_search'>advanced search</a>
     <div id='advanced_search'>
       <hr>
-      <%= select_tag :query, options_for_select(@entidades), prompt: 'Seleccionar Entidad' %>
+      <%= select_tag :entidad, options_for_select(@entidades, params[:entidad]) , prompt: 'Seleccionar Entidad' %>
       <%= number_field_tag :price_min, params[:price_min], placeholder: 'Precio Min', class: 'input-small' %>
       <%= number_field_tag :price_max, params[:price_max], placeholder: 'Precio Max' , class: 'input-small'%>
     </div>
