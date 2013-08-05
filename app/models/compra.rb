@@ -31,7 +31,7 @@ class Compra < ActiveRecord::Base
 
   def trigger_alerts
     Alert.all.each do |alert|
-     AlertMailer.compra_alert(self) if alert.detect(self)
+      AlertMailer.compra_alert(self).deliver if alert.detect(self)
     end
   end
 
