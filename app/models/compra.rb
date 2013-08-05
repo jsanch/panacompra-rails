@@ -2,6 +2,7 @@ class Compra < ActiveRecord::Base
   attr_accessible :acto, :categoria, :compra_id, :description, :entidad, :fecha, :precio, :proponente, :url, :category_id
 
   belongs_to :category
+  after_create :trigger_alerts
 
   include PgSearch
   pg_search_scope :search, against: [:proponente, :description],
