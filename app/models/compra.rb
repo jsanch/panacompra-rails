@@ -25,7 +25,6 @@ class Compra < ActiveRecord::Base
   end
 
   def trigger_alerts
-    puts 'mooooooo'
     Alert.all.each do |alert|
       AlertMailer.compra_alert(self).deliver if alert.detect(self)
     end
