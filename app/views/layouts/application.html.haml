@@ -23,5 +23,7 @@
           .span12
             = render 'layouts/messages'
             = yield
-          %footer
-            = render 'layouts/analytics'
+    #push
+    %footer
+      = render 'layouts/footer'
+      = render 'layouts/analytics'

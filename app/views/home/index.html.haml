@@ -5,10 +5,10 @@
     google.load("visualization", "1", {packages:["corechart"]});
     google.setOnLoadCallback(drawChart);
     function drawChart() {
-      var data = google.visualization.arrayToDataTable(#{proponente_chart_data});
+      var data = google.visualization.arrayToDataTable(#{entidad_chart_data});
 
       var options = {
-        title: 'Compras por Proponente',
+        title: 'Compras por Entidad Gubernamental',
         sliceVisibilityThreshold: 1/200
       };
 
