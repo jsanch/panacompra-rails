@@ -1,7 +1,7 @@
 <%= form_tag link, method: :get, class: 'form-inline' do %>
     <%= text_field_tag :query, params[:query], placeholder: 'Busqueda' %>
     <%= submit_tag "Buscar", name: nil, class: 'btn btn-success' %>
-    <a id='toggle_advanced_search'>advanced search</a>
+    <a id='toggle_advanced_search'>valores opcionales de busqueda</a>
     <div id='advanced_search'>
       <hr>
       <%= select_tag :entidad, options_for_select(@entidades, params[:entidad]) , prompt: 'Seleccionar Entidad' %>
@@ -16,5 +16,8 @@
     $('#advanced_search').show()
   }
   )
-  
+<% if params[:entidad] or params[:price_min] or params[:price_max]%>
+    $('#toggle_advanced_search').hide()
+    $('#advanced_search').show()
+<% end %>
 </script>

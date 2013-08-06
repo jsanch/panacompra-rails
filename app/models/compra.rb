@@ -5,10 +5,10 @@ class Compra < ActiveRecord::Base
   after_create :trigger_alerts
 
   include PgSearch
-  pg_search_scope :search, against: [:proponente, :description],
+  pg_search_scope :search, against: [:description, :proponente],
     using: {
-      tsearch: {dictionary: 'spanish', prefix: false, tsvector_column: 'tsv_description'},
-      tsearch: {dictionary: 'spanish', prefix: false, tsvector_column: 'tsv_proponente'}
+      tsearch: {dictionary: 'spanish', prefix: true, tsvector_column: 'tsv_description'},
+      trigram: {}
     },
     ignoring: :accents
 
