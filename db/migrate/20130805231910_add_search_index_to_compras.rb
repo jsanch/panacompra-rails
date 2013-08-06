@@ -12,7 +12,7 @@ class AddSearchIndexToCompras < ActiveRecord::Migration
 
   def down
     remove_column :compras, :tsv_description
-#    execute "drop index compras_description"
+    execute "drop index compras_description"
     execute "drop trigger tsvectorupdate on compras"
   end 
 end
