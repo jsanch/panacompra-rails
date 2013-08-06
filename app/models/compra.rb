@@ -8,7 +8,6 @@ class Compra < ActiveRecord::Base
   pg_search_scope :search, against: [:description, :proponente],
     using: {
       tsearch: {dictionary: 'spanish', prefix: true, tsvector_column: 'tsv_description'},
-      trigram: {}
     },
     ignoring: :accents
 
