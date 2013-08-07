@@ -5,7 +5,7 @@
     <div id='advanced_search'>
       <hr>
       <%= select_tag :entidad, options_for_select(@entidades, params[:entidad]) , prompt: 'Seleccionar Entidad' %>
-      <%= select_tag :category, options_from_collection_for_select(@categories, :id, :name) , prompt: 'Seleccionar Categoria' %>
+      <%-# select_tag :category, options_from_collection_for_select(@categories, :id, :name) , prompt: 'Seleccionar Categoria' %>
       <%= number_field_tag :price_min, params[:price_min], placeholder: 'Precio Min', class: 'input-small' %>
       <%= number_field_tag :price_max, params[:price_max], placeholder: 'Precio Max' , class: 'input-small'%>
     </div>
