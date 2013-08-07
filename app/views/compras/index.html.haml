@@ -17,7 +17,7 @@
     - @compras.each do |compra|
       %tr
         %td= compra.entidad
-        %td= compra.precio
+        %td= number_to_currency(compra.precio)
         %td= compra.proponente
         %td= compra.description
         %td= compra.acto
