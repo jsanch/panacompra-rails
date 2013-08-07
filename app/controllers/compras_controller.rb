@@ -16,8 +16,10 @@ class ComprasController < ApplicationController
     @compras = @compras.where('precio >= ?', params[:price_min]) if (params[:price_min] and params[:price_min] != '')
     @compras = @compras.where('precio <= ?', params[:price_max]) if (params[:price_max] and params[:price_max] != '')
     @compras = @compras.where('entidad = ?', params[:entidad]) if (params[:entidad] and params[:entidad] != '')
+    @compras = @compras.where('category_id = ?', params[:category]) if (params[:category] and params[:category] != '')
     @compras = @compras.paginate(page: params[:page])
     @entidades = Compra.select("DISTINCT(ENTIDAD)").map{|x| x.entidad}.sort
+    @categories = Category.all
 
     respond_to do |format|
       format.html # index.html.erb

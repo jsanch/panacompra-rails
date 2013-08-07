@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130805231910) do
+ActiveRecord::Schema.define(:version => 20130806014554) do
 
   create_table "alerts", :force => true do |t|
     t.string   "entidad"
@@ -44,11 +44,9 @@ ActiveRecord::Schema.define(:version => 20130805231910) do
     t.integer  "category_id"
     t.boolean  "done"
     t.tsvector "tsv_description"
-    t.tsvector "tsv_proponente"
   end
 
   add_index "compras", ["tsv_description"], :name => "compras_description"
-  add_index "compras", ["tsv_proponente"], :name => "compras_proponente"
 
   create_table "users", :force => true do |t|
     t.datetime "created_at",                             :null => false
