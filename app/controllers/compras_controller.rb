@@ -20,6 +20,7 @@ class ComprasController < ApplicationController
     @compras = @compras.paginate(page: params[:page])
     @entidades = Compra.select("DISTINCT(ENTIDAD)").map{|x| x.entidad}.sort
     @categories = Category.all
+    record_query
 
     respond_to do |format|
       format.html # index.html.erb
@@ -111,4 +112,17 @@ class ComprasController < ApplicationController
       end
     end
   end
+
+  protected
+
+  def record_query
+    if params[:query] then
+      query = { query: params[:query] }
+      query['entidad'] = params[:entidad] if params[:entidad]
+      query['price_min'] = params[:price_min] if params[:price_min]
+      query['price_max'] = params[:price_max] if params[:price_max]
+      Query.create(query)
+    end
+  end
+
 end
