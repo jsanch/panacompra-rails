@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130807201250) do
+ActiveRecord::Schema.define(:version => 20130808154553) do
 
   create_table "alerts", :force => true do |t|
     t.string   "entidad"
@@ -55,8 +55,11 @@ ActiveRecord::Schema.define(:version => 20130807201250) do
     t.string   "entidad"
     t.integer  "price_min"
     t.integer  "price_max"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
+    t.string   "ip"
+    t.integer  "category_id"
+    t.integer  "user_id"
   end
 
   create_table "users", :force => true do |t|

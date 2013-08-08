@@ -117,8 +117,10 @@ class ComprasController < ApplicationController
 
   def record_query
     if params[:query] then
-      query = { query: params[:query] }
+      query = { query: params[:query], ip: request.remote_ip }
       query['entidad'] = params[:entidad] if params[:entidad]
+      query['user_id'] = current_user.id if user_signed_in?
+      query['category_id'] = params[:category] if params[:category]
       query['price_min'] = params[:price_min] if params[:price_min]
       query['price_max'] = params[:price_max] if params[:price_max]
       Query.create(query)
