@@ -8,6 +8,9 @@
       <%= select_tag :category, options_from_collection_for_select(@categories, :id, :name, params[:category]) , prompt: 'Seleccionar Categoria' %>
       <%= number_field_tag :price_min, params[:price_min], placeholder: 'Precio Min', class: 'input-small' %>
       <%= number_field_tag :price_max, params[:price_max], placeholder: 'Precio Max' , class: 'input-small'%>
+      <label class="checkbox">
+      <%= check_box_tag :empty, 1,params[:empty]  %> Sin Proponente
+    </label>
     </div>
 <% end %>
 <script>

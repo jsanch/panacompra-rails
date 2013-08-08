@@ -17,6 +17,7 @@ class ComprasController < ApplicationController
     @compras = @compras.where('precio <= ?', params[:price_max]) if (params[:price_max] and params[:price_max] != '')
     @compras = @compras.where('entidad = ?', params[:entidad]) if (params[:entidad] and params[:entidad] != '')
     @compras = @compras.where('category_id = ?', params[:category]) if (params[:category] and params[:category] != '')
+    @compras = @compras.where('proponente = ?', 'empty') if (params[:empty] and params[:empty] != '')
     @compras = @compras.paginate(page: params[:page])
     @entidades = Compra.select("DISTINCT(ENTIDAD)").map{|x| x.entidad}.sort
     @categories = Category.all
@@ -123,6 +124,7 @@ class ComprasController < ApplicationController
       query['category_id'] = params[:category] if params[:category]
       query['price_min'] = params[:price_min] if params[:price_min]
       query['price_max'] = params[:price_max] if params[:price_max]
+      query['empty'] = true if (params[:empty] and params[:empty] == '1') 
       Query.create(query)
     end
   end
