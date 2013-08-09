@@ -12,9 +12,11 @@ class ComprasController < ApplicationController
   # GET /compras
   # GET /compras.json
   def index
-    @compras = Compra.text_search(params[:query]).order('ID DESC')
+    @compras = Compra.text_search(params[:query]).order('FECHA DESC')
     @compras = @compras.where('precio >= ?', params[:price_min]) if (params[:price_min] and params[:price_min] != '')
     @compras = @compras.where('precio <= ?', params[:price_max]) if (params[:price_max] and params[:price_max] != '')
+    @compras = @compras.where('fecha >= ?', params[:fecha_min]) if (params[:fecha_min] and params[:fecha_min] != '')
+    @compras = @compras.where('fecha <= ?', params[:fecha_max]) if (params[:fecha_max] and params[:fecha_max] != '')
     @compras = @compras.where('entidad = ?', params[:entidad]) if (params[:entidad] and params[:entidad] != '')
     @compras = @compras.where('category_id = ?', params[:category]) if (params[:category] and params[:category] != '')
     @compras = @compras.where('proponente = ?', 'empty') if (params[:empty] and params[:empty] != '')

@@ -11,6 +11,7 @@
       %th= model_class.human_attribute_name(:precio)
       %th= model_class.human_attribute_name(:proponente)
       %th= model_class.human_attribute_name(:description)
+      %th= model_class.human_attribute_name(:fecha)
       %th= model_class.human_attribute_name(:acto)
       %th
   %tbody
@@ -20,6 +21,7 @@
         %td= number_to_currency(compra.precio)
         %td= compra.proponente.titleize
         %td= compra.description.humanize
+        %td= compra.fecha
         %td= compra.acto
         %td= link_to('Detalle', 'http://panamacompra.gob.pa' + compra.url, class: 'btn btn-small btn-primary') if compra.url
 

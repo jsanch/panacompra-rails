@@ -6,7 +6,7 @@ class CreateCompras < ActiveRecord::Migration
       t.string :proponente
       t.integer :categoria
       t.string :url
-      t.date :fecha
+      t.datetime :fecha
       t.text :description
       t.string :acto
       t.integer :compra_id
