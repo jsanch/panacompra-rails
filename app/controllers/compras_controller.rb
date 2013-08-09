@@ -21,7 +21,7 @@ class ComprasController < ApplicationController
     @compras = @compras.where('category_id = ?', params[:category]) if (params[:category] and params[:category] != '')
     @compras = @compras.where('proponente = ?', 'empty') if (params[:empty] and params[:empty] != '')
     @compras = @compras.paginate(page: params[:page])
-    @entidades = Compra.select("DISTINCT(ENTIDAD)").map{|x| x.entidad}.sort
+    @entidades = Rails.cache.fetch("entidades", :expires_in => 10.minutes) {Compra.select("DISTINCT(ENTIDAD)").map{|x| x.entidad}.sort}
     @categories = Category.all
     record_query
 
