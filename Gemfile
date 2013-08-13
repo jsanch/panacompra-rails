@@ -19,6 +19,7 @@ gem 'html5shiv-rails'
 
 gem "rspec-rails", :group => [:test, :development]
 gem "factory_girl_rails", :group => [:test, :developmen]
+gem 'quiet_assets', :group => :development
 
 gem "devise"
 gem 'cancan'

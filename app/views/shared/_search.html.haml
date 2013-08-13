@@ -5,7 +5,7 @@
         %label.control-label{:for => "query"}
           Descripcion 
         .controls
-          = text_field_tag :query, params[:query], placeholder: 'Busqueda'
+          = text_field_tag :query, params[:query], placeholder: 'Descripcion'
       .control-group
         %label.control-label{:for => "acto"}
           Acto 
@@ -15,7 +15,7 @@
         %label.control-label{:for => "proponente"}
           Proponente
         .controls
-          %input#proponente{:name => "proponente", :type => "text", :value => ""}/
+          = text_field_tag :proponente, params[:proponente], placeholder: 'Proponente'
           %hr
           %label.checkbox
             = check_box_tag :empty, 1,params[:empty]
