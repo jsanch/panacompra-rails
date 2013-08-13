@@ -35,7 +35,7 @@ ActiveRecord::Schema.define(:version => 20130809190252) do
     t.string   "proponente"
     t.integer  "categoria"
     t.string   "url"
-    t.date     "fecha"
+    t.datetime "fecha"
     t.text     "description"
     t.string   "acto"
     t.integer  "compra_id"
@@ -47,6 +47,19 @@ ActiveRecord::Schema.define(:version => 20130809190252) do
   end
 
   add_index "compras", ["tsv_description"], :name => "compras_description"
+
+  create_table "queries", :force => true do |t|
+    t.string   "query"
+    t.string   "entidad"
+    t.integer  "price_min"
+    t.integer  "price_max"
+    t.datetime "created_at",                     :null => false
+    t.datetime "updated_at",                     :null => false
+    t.string   "ip"
+    t.integer  "category_id"
+    t.integer  "user_id"
+    t.boolean  "empty",       :default => false
+  end
 
   create_table "users", :force => true do |t|
     t.datetime "created_at",                             :null => false

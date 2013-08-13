@@ -15,4 +15,5 @@
 //= require raphael-min
 //= require morris.min
 //= require twitter/bootstrap
+//= require jquery.ui.datepicker
 //= require_tree .
