@@ -5,5 +5,4 @@
 jQuery ->
   $('#fecha_min').datepicker()
   $('#fecha_max').datepicker()
-  $('#query').tooltip({title: 'Busqueda por Descripcion, Proponente, y Numero de Acto', trigger: 'hover'})
 
