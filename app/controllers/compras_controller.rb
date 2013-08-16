@@ -14,6 +14,7 @@ class ComprasController < ApplicationController
   def index
     @compras = Compra.text_search(params[:query]).order('FECHA DESC')
     filter_compras
+    stats
     @compras = @compras.paginate(page: params[:page])
     @entidades = Rails.cache.fetch("entidades", :expires_in => 1.day ) {Compra.select("DISTINCT(ENTIDAD)").map{|x| x.entidad}.sort}
     @categories = Category.all
@@ -148,6 +149,10 @@ class ComprasController < ApplicationController
     @compras = @compras.where('proponente = ?', 'empty') if (params[:empty] and params[:empty] != '')
   end
 
+  def stats
+    @total = @compras.count
+    @price = @compras.sum(:precio)
+  end
 
 
   def record_query

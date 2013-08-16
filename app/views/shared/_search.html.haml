@@ -56,11 +56,11 @@
               .span3
                 %b
                   Total de Compras:
-                = @compras.count
+                = @total
               .span3
                 %b
                   Precio Sumado:
-                = number_to_currency(@compras.sum(:precio))
+                = number_to_currency(@price)
 :javascript
   $('.advanced_search').hide()
   $('#toggle_advanced_search').click(function() {
