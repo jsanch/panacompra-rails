@@ -23,7 +23,7 @@ gem 'quiet_assets', :group => :development
 
 gem "devise"
 gem 'cancan'
-gem 'thin'
+gem 'unicorn'
 
 gem 'ransack'
 gem 'pg_search'
