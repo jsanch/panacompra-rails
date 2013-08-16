@@ -72,4 +72,6 @@
     $('.controls').find(':input').val('')
   }
   )
-      
+  #{ "$('.advanced_search').show()" if params[:query] }
+  #{ "$('#toggle_advanced_search').hide()" if params[:query] }
+ 
