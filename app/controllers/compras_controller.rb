@@ -15,7 +15,7 @@ class ComprasController < ApplicationController
     @compras = Compra.text_search(params[:query]).order('FECHA DESC')
     filter_compras
     @compras = @compras.paginate(page: params[:page])
-    @entidades = Rails.cache.fetch("entidades", :expires_in => 10.minutes) {Compra.select("DISTINCT(ENTIDAD)").map{|x| x.entidad}.sort}
+    @entidades = Rails.cache.fetch("entidades", :expires_in => 1.day ) {Compra.select("DISTINCT(ENTIDAD)").map{|x| x.entidad}.sort}
     @categories = Category.all
     record_query
 

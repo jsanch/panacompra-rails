@@ -1,10 +1,15 @@
 - model_class = Compra
-.page-header
-  %h1=t '.title', :default => model_class.model_name.human.pluralize.titleize
+.row
+  .page-header
+    %h1=t '.title', :default => model_class.model_name.human.pluralize.titleize
+  
+.row
+  .page-header
+    = render "shared/search", link: compras_path
 
-= render "shared/search", link: compras_path
 
-%table.table.table-striped
+
+%table.table.table-hover
   %thead
     %tr
       %th= model_class.human_attribute_name(:entidad)
