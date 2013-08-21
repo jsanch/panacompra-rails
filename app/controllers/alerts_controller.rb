@@ -34,6 +34,7 @@ class AlertsController < ApplicationController
 
   # GET /alerts/1/edit
   def edit
+    @entidades = Compra.select("DISTINCT(ENTIDAD)").map{|x| x.entidad}.sort
   end
 
   # POST /alerts
