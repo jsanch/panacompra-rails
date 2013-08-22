@@ -1,6 +1,18 @@
 class Compra < ActiveRecord::Base
   attr_accessible :acto, :categoria, :compra_id, :description, :entidad, :fecha, :precio, :proponente, :url, :category_id
 
+  validates_uniqueness_of :acto
+  validates_uniqueness_of :url
+
+  validates_presence_of :category_id
+  validates_presence_of :fecha
+  validates_presence_of :proponente
+  validates_presence_of :entidad
+  validates_presence_of :acto
+  validates_presence_of :url
+  validates_presence_of :description
+  validates_presence_of :precio
+
   belongs_to :category
   after_create :trigger_alerts
 
@@ -28,9 +40,7 @@ class Compra < ActiveRecord::Base
   end
 
   def trigger_alerts
-    Alert.all.each do |alert|
-      AlertMailer.compra_alert(self,alert.user.email).deliver if alert.detect(self)
-    end
+    Delayed::Job.enqueue(AlertJob.new(self.id))
   end
 
 

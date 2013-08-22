@@ -1,3 +1,10 @@
 %h1 Alerta de Compra
 %p La siguiente compra ha disparado una alerta
+
+%p Entidad: #{@compra.entidad}
+%p Proponente: #{@compra.proponente}
+%p Precio: #{@compra.precio}
+%p Acto: #{@compra.acto}
+%p Descripcion: #{@compra.description}
+
 = link_to 'http://panamacompra.gob.pa' + @compra.url,'http://panamacompra.gob.pa' + @compra.url

@@ -31,3 +31,4 @@ gem 'pg_search'
 gem 'activerecord-import'
 
 gem 'newrelic_rpm'
+gem 'delayed_job_active_record'
