@@ -28,6 +28,6 @@
         %td= compra.description.humanize
         %td= compra.fecha
         %td= compra.acto
-        %td= link_to('Detalle', 'http://panamacompra.gob.pa' + compra.url, class: 'btn btn-small btn-primary') if compra.url
+        %td= link_to('Detalle', 'http://panamacompra.gob.pa/AmbientePublico/' + compra.url, class: 'btn btn-small btn-primary') if compra.url
 
 = will_paginate @compras

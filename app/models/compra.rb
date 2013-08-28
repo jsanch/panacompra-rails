@@ -40,7 +40,10 @@ class Compra < ActiveRecord::Base
   end
 
   def trigger_alerts
-    Delayed::Job.enqueue(AlertJob.new(self.id))
+    Alert.all.each do |alert|
+      AlertMailer.compra_alert(self,alert.user.email).deliver if alert.detect(self)
+    end
+    #Delayed::Job.enqueue(AlertJob.new(self.id))
   end
 
 
