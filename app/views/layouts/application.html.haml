@@ -18,9 +18,7 @@
         .container
           = render 'layouts/navigation'
     #main{:role => "main"}
-      .hero-unit
-        .page-header
-          = render "shared/search", link: compras_path
+      = yield(:main)
       .container
         .row
           .span12

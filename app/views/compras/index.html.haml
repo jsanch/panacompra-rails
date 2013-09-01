@@ -1,4 +1,9 @@
 - model_class = Compra
+= content_for :main do
+  .hero-unit
+    .page-header
+      = render "shared/search", link: compras_path
+
   
 
 
