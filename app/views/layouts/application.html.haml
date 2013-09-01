@@ -18,6 +18,9 @@
         .container
           = render 'layouts/navigation'
     #main{:role => "main"}
+      .hero-unit
+        .page-header
+          = render "shared/search", link: compras_path
       .container
         .row
           .span12

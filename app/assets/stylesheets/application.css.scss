@@ -15,6 +15,15 @@
 #stats{
   padding-top: 10px;
 }
+.page-header{
+}
+.hero-unit{
+padding-bottom:0px !important ;
+}
+#main{
+  margin-top:-20px;
+
+}
 .content {
   background-color: #eee;
   padding: 20px;
@@ -34,6 +43,9 @@
 html,body {
  height: 100%;
  /* The html and body elements cannot have any padding or margin. */
+}
+body{
+  padding-top:0px !important;
 }
 
 /* Wrapper for page content to push down footer */

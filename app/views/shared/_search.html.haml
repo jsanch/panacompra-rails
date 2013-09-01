@@ -41,10 +41,10 @@
           = text_field_tag :fecha_min, params[:fecha_min], placeholder: 'Fecha Min', class: 'input-small'
           = text_field_tag :fecha_max, params[:fecha_max], placeholder: 'Fecha Max', class: 'input-small'
       .control-group.advanced_search
-        %label.control-label
-          Sin Proponente
         .controls
-          = check_box_tag :empty, 1,params[:empty]
+          %label.checkbox
+            = check_box_tag(:empty, 1,params[:empty]) + 'Sin Proponente'
+          %a#toggle_simple_search busqueda simple 
 
     .span3
       = submit_tag "Buscar", name: nil, class: 'btn btn-success btn-block'
@@ -65,7 +65,15 @@
   $('.advanced_search').hide()
   $('#toggle_advanced_search').click(function() {
     $('#toggle_advanced_search').hide()
+    $('#toggle_simple_search').show()
     $('.advanced_search').slideDown("fast");
+  }
+  )
+  $('#toggle_simple_search').click(function() {
+    $('#toggle_simple_search').hide()
+    $('.controls').find(':input').val('')
+    $('.advanced_search').slideUp("fast");
+    $('#toggle_advanced_search').show()
   }
   )
   $('#clean').click(function() {

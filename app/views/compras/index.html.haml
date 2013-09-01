@@ -1,15 +1,9 @@
 - model_class = Compra
-.row
-  .page-header
-    %h1=t '.title', :default => model_class.model_name.human.pluralize.titleize
   
-.row
-  .page-header
-    = render "shared/search", link: compras_path
 
 
 
-%table.table.table-hover
+%table.table.table-hover.table-condensed
   %thead
     %tr
       %th= model_class.human_attribute_name(:entidad)
@@ -24,9 +18,9 @@
       %tr
         %td= compra.entidad.titleize
         %td= number_to_currency(compra.precio)
-        %td= compra.proponente.titleize
+        %td= compra.proponente.titleize if compra.proponente != 'empty'
         %td= compra.description.humanize
-        %td= compra.fecha
+        %td= compra.fecha.strftime('%d/%m/%y')
         %td= compra.acto
         %td= link_to('Detalle', 'http://panamacompra.gob.pa/AmbientePublico/' + compra.url, class: 'btn btn-small btn-primary') if compra.url
 
