@@ -1,5 +1,6 @@
 class ComprasController < ApplicationController
   skip_before_filter :verify_authenticity_token
+  before_filter :auth_admin, :only => [:create,:all,:update,:destroy,:create_many]
 
   def all
     @compras = Compra.select('acto')
@@ -112,6 +113,12 @@ class ComprasController < ApplicationController
   end
 
   protected
+
+  def auth_admin
+    if params[:token] != '1zWRXH7m3kgV0CV3P8wxPXN1i6zgU2Bvm4mIpaA00lFmaswla9Qj5WIOAcNPSko' then
+      raise ActionController::RoutingError.new('Not Found')
+    end
+  end
 
   def filter_fecha
     if params[:fecha_min] and params[:fecha_max] and (params[:fecha_max] != '' or params[:fecha_min] != '') then
