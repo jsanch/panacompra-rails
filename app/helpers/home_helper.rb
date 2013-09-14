@@ -7,6 +7,12 @@ module HomeHelper
       end
     end
   end
+  
+  def categoria_chart_data 
+      (Compra.sum(:precio, :group => :category)).map do |category,precio|
+        [ category.name,precio.to_f ] 
+      end
+  end
 
   def total_por_dia_data
     Rails.cache.fetch("total_por_dia_data", :expires_in => 5.minutes) do
