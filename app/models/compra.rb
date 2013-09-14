@@ -48,8 +48,8 @@ class Compra < ActiveRecord::Base
 
   def self.total_by_day(start=1.week.ago)
     compras = where(fecha: start.beginning_of_day..Time.zone.now)
-    compras = compras.group("fecha")
-    compras = compras.select("fecha, sum(precio) as total_price")
+    compras = compras.group("date(fecha)")
+    compras = compras.select("date(fecha), sum(precio) as total_price")
     compras
   end
 
