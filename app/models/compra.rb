@@ -46,5 +46,12 @@ class Compra < ActiveRecord::Base
     #Delayed::Job.enqueue(AlertJob.new(self.id))
   end
 
+  def self.total_by_day(start=1.week.ago)
+    compras = where(fecha: start.beginning_of_day..Time.zone.now)
+    compras = compras.group("fecha")
+    compras = compras.select("fecha, sum(precio) as total_price")
+    compras
+  end
+
 
 end
