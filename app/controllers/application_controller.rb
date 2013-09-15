@@ -10,10 +10,13 @@ class ApplicationController < ActionController::Base
   end
 
   def initialize_many_from_json
-    params[:_json].lazy.collect do |object|
+    array = []
+    params[:_json].each do |object|
       new_object = controller_name.classify.constantize.new
       new_object.assign_attributes(object , :without_protection => true)
+      array << new_object
     end
+    array
   end
 
 end
