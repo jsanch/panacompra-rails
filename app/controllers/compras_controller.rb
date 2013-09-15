@@ -99,10 +99,8 @@ class ComprasController < ApplicationController
   end
 
   def create_many
-    @compras = initialize_many_from_json
-
     respond_to do |format|
-      if Compra.import @compras, :validate => false
+      if Compra.import initialize_many_from_json, :validate => false
         format.html { render text: 'success', status: :created}
         format.json { render text: 'success', status: :created}
       else
