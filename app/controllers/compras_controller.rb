@@ -103,11 +103,11 @@ class ComprasController < ApplicationController
 
     respond_to do |format|
       if Compra.import @compras
-        format.html { render json: @compras, status: :created}
-        format.json { render json: @compras, status: :created}
+        format.html { render text: 'success', status: :created}
+        format.json { render text: 'success', status: :created}
       else
         format.html { render json: @compras.errors, status: :unprocessable_entity }
-        format.json { render json: @compras.errors, status: :unprocessable_entity }
+        format.json { render text: 'fail', status: :unprocessable_entity }
       end
     end
   end
