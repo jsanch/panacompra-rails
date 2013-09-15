@@ -102,7 +102,7 @@ class ComprasController < ApplicationController
     @compras = initialize_many_from_json
 
     respond_to do |format|
-      if Compra.import @compras
+      if Compra.import @compras, :validate => false
         format.html { render text: 'success', status: :created}
         format.json { render text: 'success', status: :created}
       else
