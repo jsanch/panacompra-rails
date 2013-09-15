@@ -41,6 +41,11 @@
           = text_field_tag :fecha_min, params[:fecha_min], placeholder: 'Fecha Min', class: 'input-small'
           = text_field_tag :fecha_max, params[:fecha_max], placeholder: 'Fecha Max', class: 'input-small'
       .control-group.advanced_search
+        %label.control-label{:for => "modalidad"}
+          Modalidad
+        .controls
+          = select_tag :modalidad, options_for_select(['Por Renglón','Global'], params[:modalidad]), prompt: 'Seleccionar Modalidad'
+      .control-group.advanced_search
         .controls
           %label.checkbox
             = check_box_tag(:empty, 1,params[:empty]) + 'Sin Proponente'

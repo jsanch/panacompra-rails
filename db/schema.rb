@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130822034716) do
+ActiveRecord::Schema.define(:version => 20130914180433) do
 
   create_table "alerts", :force => true do |t|
     t.string   "entidad"
@@ -39,11 +39,20 @@ ActiveRecord::Schema.define(:version => 20130822034716) do
     t.text     "description"
     t.string   "acto"
     t.integer  "compra_id"
-    t.datetime "created_at",      :null => false
-    t.datetime "updated_at",      :null => false
+    t.datetime "created_at",        :null => false
+    t.datetime "updated_at",        :null => false
     t.integer  "category_id"
     t.boolean  "done"
     t.tsvector "tsv_description"
+    t.string   "compra_type"
+    t.string   "dependencia"
+    t.string   "nombre_contacto"
+    t.string   "telefono_contacto"
+    t.string   "correo_contacto"
+    t.string   "objeto"
+    t.string   "modalidad"
+    t.string   "unidad"
+    t.string   "provincia"
   end
 
   add_index "compras", ["tsv_description"], :name => "compras_description"

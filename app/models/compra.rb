@@ -53,5 +53,9 @@ class Compra < ActiveRecord::Base
     compras
   end
 
+  def full_url
+    "http://panamacompra.gob.pa/AmbientePublico/" + self.url
+  end
+
 
 end

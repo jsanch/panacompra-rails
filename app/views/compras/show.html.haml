@@ -1,43 +1,69 @@
 - model_class = Compra
-.page-header
-  %h1=t '.title', :default => model_class.model_name.human.titleize
+= content_for :main do
+  .hero-unit
+    .page-header
+      %h1 Acto #{@compra.acto}
 
-%p
-  %strong= model_class.human_attribute_name(:entidad) + ':'
-  %br
-  = @compra.entidad
-%p
-  %strong= model_class.human_attribute_name(:precio) + ':'
-  %br
-  = @compra.precio
-%p
-  %strong= model_class.human_attribute_name(:proponente) + ':'
-  %br
-  = @compra.proponente
-%p
-  %strong= model_class.human_attribute_name(:categoria) + ':'
-  %br
-  = @compra.categoria
-%p
-  %strong= model_class.human_attribute_name(:url) + ':'
-  %br
-  = @compra.url
-%p
-  %strong= model_class.human_attribute_name(:fecha) + ':'
-  %br
-  = @compra.fecha
-%p
-  %strong= model_class.human_attribute_name(:description) + ':'
-  %br
-  = @compra.description
-%p
-  %strong= model_class.human_attribute_name(:acto) + ':'
-  %br
-  = @compra.acto
-%p
-  %strong= model_class.human_attribute_name(:compra_id) + ':'
-  %br
-  = @compra.compra_id
+.row
+  .span7
+    %p
+      %strong= model_class.human_attribute_name(:categoria) + ':'
+      = @compra.category.name
+    %p
+      %strong= model_class.human_attribute_name(:entidad) + ':'
+      = @compra.entidad.mb_chars.titleize
+    %p
+      %strong= model_class.human_attribute_name(:dependencia) + ':'
+      = @compra.dependencia.mb_chars.titleize
+    %p
+      %strong= model_class.human_attribute_name(:unidad) + ':'
+      = @compra.unidad.mb_chars.titleize
+    %p
+      %strong= model_class.human_attribute_name(:provincia) + ':'
+      = @compra.provincia.mb_chars.titleize
+    %p
+      %strong= model_class.human_attribute_name(:precio) + ':'
+      = number_to_currency(@compra.precio)
+    %p
+      %strong= 'Descripción:'
+      %br
+      = @compra.description.mb_chars.downcase
+  .span4
+    .row
+      .span4
+        .well
+          %p
+            %strong= model_class.human_attribute_name(:nombre_contacto) + ':'
+            = @compra.nombre_contacto.mb_chars.titleize
+          %p
+            %strong= model_class.human_attribute_name(:telefono_contacto) + ':'
+            = @compra.telefono_contacto
+          %p
+            %strong= model_class.human_attribute_name(:correo_contacto) + ':'
+            = @compra.correo_contacto
+    - if @compra.proponente != 'empty'
+      .row
+        .span4
+          .well
+            %p
+              %strong= model_class.human_attribute_name(:proponente) + ':'
+              = @compra.proponente
+.row
+  .span12
+    %hr
+    %p
+      %strong= model_class.human_attribute_name(:fecha) + ':'
+      = @compra.fecha
+    %p
+      %strong= model_class.human_attribute_name(:compra_type) + ':'
+      = @compra.compra_type
+    %p
+      %strong= model_class.human_attribute_name(:modalidad) + ':'
+      = @compra.modalidad
+    %p
+      %strong= model_class.human_attribute_name(:objeto) + ':'
+      = @compra.objeto
 
 .form-actions
-  = link_to t('.back', :default => t("helpers.links.back")), compras_path, :class => 'btn'
+  = link_to t('.atras', :default => t("helpers.links.atras")), compras_path, :class => 'btn'
+  = link_to t('.ir_a_original', :default => t("helpers.links.ir_a_original")), @compra.full_url, :class => 'btn btn-primary btn-medium'

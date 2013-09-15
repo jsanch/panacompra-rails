@@ -9,14 +9,18 @@
 
 
 %table.table.table-hover.table-condensed
+  - if not params[:query]
+    %caption 
+      %h1 Últimas Licitaciónes
+      %hr
   %thead
     %tr
       %th= model_class.human_attribute_name(:entidad)
       %th= model_class.human_attribute_name(:precio)
       %th= model_class.human_attribute_name(:proponente)
       %th= model_class.human_attribute_name(:description)
+      %th= model_class.human_attribute_name(:correo_contacto)
       %th= model_class.human_attribute_name(:fecha)
-      %th= model_class.human_attribute_name(:acto)
       %th
   %tbody
     - @compras.each do |compra|
@@ -25,8 +29,8 @@
         %td= number_to_currency(compra.precio)
         %td= compra.proponente.titleize if compra.proponente != 'empty'
         %td= compra.description.humanize
+        %td= compra.correo_contacto
         %td= compra.fecha.strftime('%d/%m/%y')
-        %td= compra.acto
-        %td= link_to('Detalle', 'http://panamacompra.gob.pa/AmbientePublico/' + compra.url, class: 'btn btn-small btn-primary') if compra.url
+        %td= link_to 'Detalle', compra, class: 'btn btn-small btn-primary'
 
 = will_paginate @compras

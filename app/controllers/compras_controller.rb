@@ -1,6 +1,6 @@
 class ComprasController < ApplicationController
   skip_before_filter :verify_authenticity_token
-  before_filter :auth_admin, :only => [:create,:all,:update,:destroy,:create_many]
+#  before_filter :auth_admin, :only => [:create,:all,:update,:destroy,:create_many]
 
   def all
     @compras = Compra.select('acto')
@@ -146,11 +146,18 @@ class ComprasController < ApplicationController
     end
   end
 
+  def filter_modalidad
+    if params[:modalidad] and params[:modalidad] != '' then
+      @compras = @compras.where("modalidad = ?", params[:modalidad])
+    end
+  end
+
   def filter_compras
     filter_fecha
     filter_price
     filter_proponente
     filter_acto
+    filter_modalidad
     @compras = @compras.where('entidad = ?', params[:entidad]) if (params[:entidad] and params[:entidad] != '')
     @compras = @compras.where('category_id = ?', params[:category]) if (params[:category] and params[:category] != '')
     @compras = @compras.where('proponente = ?', 'empty') if (params[:empty] and params[:empty] != '')
