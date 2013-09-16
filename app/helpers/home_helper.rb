@@ -10,7 +10,7 @@ module HomeHelper
   
   def categoria_chart_data 
       (Compra.sum(:precio, :group => :category)).map do |category,precio|
-        [ category.name,precio.to_f ] 
+        [ category.name,precio.to_f ] if category 
       end
   end
 
