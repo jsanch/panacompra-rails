@@ -9,8 +9,8 @@ module HomeHelper
   end
   
   def categoria_chart_data 
-      (Compra.sum(:precio, :group => :category)).map do |category,precio|
-        [ category.name,precio.to_f ] if category 
+      (Compra.where('compras.category_id IS NOT NULL').sum(:precio, :group => :category)).map do |category,precio|
+        [ category.name,precio.to_f ]
       end
   end
 
