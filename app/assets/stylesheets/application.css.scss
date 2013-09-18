@@ -12,6 +12,9 @@
  *= require_self
  *= require_tree .
 */
+.add-padding-fixed{
+  padding-top: 60px; 
+}
 #stats{
   padding-top: 10px;
   font-size:80%;
