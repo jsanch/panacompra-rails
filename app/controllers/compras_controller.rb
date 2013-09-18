@@ -1,6 +1,7 @@
 class ComprasController < ApplicationController
   skip_before_filter :verify_authenticity_token
 #  before_filter :auth_admin, :only => [:create,:all,:update,:destroy,:create_many]
+  http_basic_authenticate_with name: ENV['admin_user'], password: ENV['admin_pass'], except: [:index,:show]
 
   def all
     @compras = Compra.select('acto')
