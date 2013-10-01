@@ -11,7 +11,7 @@
 %table.table.table-hover.table-condensed
   - if not params[:query]
     %caption 
-      %h1 Últimas Licitaciónes
+      %h1 Últimas Licitaciones
       %hr
   %thead
     %tr
@@ -25,10 +25,10 @@
   %tbody
     - @compras.each do |compra|
       %tr
-        %td= compra.entidad.titleize
+        %td= compra.entidad.titleize.html_safe
         %td= number_to_currency(compra.precio)
-        %td= compra.proponente.titleize if compra.proponente != 'empty'
-        %td= compra.description.humanize
+        %td= compra.proponente.titleize.html_safe if compra.proponente != 'empty'
+        %td= compra.description.humanize.html_safe
         %td= compra.correo_contacto
         %td= compra.fecha.strftime('%d/%m/%y')
         %td= link_to 'Detalle', compra, class: 'btn btn-small btn-primary'
