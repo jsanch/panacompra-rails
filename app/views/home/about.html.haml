@@ -1,0 +1,25 @@
+= content_for :main do
+  .hero-unit.add-padding-fixed
+    .page-header
+      %h1 Sobre Panacompra
+%h2 Que es panacompra?
+%h5 
+  Panacompra es una applicacion desarrollada con el fin de brindar accesibilidad a la data proveniente de
+  = link_to 'http://www.panamacompra.gob.pa'
+  %hr
+%h2 Puedo bajar una copia de su base de datos?
+%h5 
+  Si.
+  El
+  = link_to 'snapshot', 'http://dev507.com/panasnapshot.csv'
+  es una imagen completa de la base de datos usada por panacompra, es actualizado cada 3 horas.
+  %hr
+%h2 Cada cuanto tiempo se actualiza la informacion en panacompra?
+%h5 La informacion en esta pagina es actualizada con panamacompra.gob.pa cada 10 minutos.
+%hr
+%h2 Puedo ver el codigo de panacompra?
+%h5 Si. Esta publicado en github.
+%h5
+  = link_to 'codigo fuente del scraper', 'http://github.com/ibarria0/panacompra'
+%h5
+  = link_to 'codigo fuente de la applicacion web', 'http://github.com/ibarria0/panacompra-rails'

@@ -12,6 +12,7 @@ Panacompra::Application.routes.draw do
     post 'create_many', on: :collection
   end
   match '/stats' => 'home#index'
+  match '/about' => 'home#about'
 
   root :to => "compras#index"
 end
