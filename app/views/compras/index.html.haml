@@ -3,7 +3,16 @@
   .hero-unit.add-padding-fixed
     .page-header
       = render "shared/search", link: compras_path
-
+    .pull-right
+      / Place this tag where you want the +1 button to render.
+      .g-plusone{"data-annotation" => "inline", "data-width" => "300", "data-href" => "http://www.panacompra.net"}
+      / Place this tag after the last +1 button tag.
+      :javascript
+        (function() {
+          var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
+          po.src = 'https://apis.google.com/js/plusone.js';
+          var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
+        })();
   
 
 
@@ -18,19 +27,22 @@
       %th= model_class.human_attribute_name(:entidad)
       %th= model_class.human_attribute_name(:precio)
       %th= model_class.human_attribute_name(:proponente)
-      %th= model_class.human_attribute_name(:description)
-      %th= model_class.human_attribute_name(:correo_contacto)
-      %th= model_class.human_attribute_name(:fecha)
-      %th
+      %th.hidden-phone= model_class.human_attribute_name(:description)
+      %th.hidden-phone= model_class.human_attribute_name(:correo_contacto)
+      %th.hidden-phone= model_class.human_attribute_name(:fecha)
   %tbody
     - @compras.each do |compra|
-      %tr
+      %tr{:data=> {:link=> compra_path(compra)}}
         %td= compra.entidad.titleize.html_safe
         %td= number_to_currency(compra.precio)
         %td= compra.proponente.titleize.html_safe if compra.proponente != 'empty'
-        %td= compra.description.humanize.html_safe
-        %td= compra.correo_contacto
-        %td= compra.fecha.strftime('%d/%m/%y')
-        %td= link_to 'Detalle', compra, class: 'btn btn-small btn-primary'
+        %td.hidden-phone= compra.description.humanize.html_safe
+        %td.hidden-phone= compra.correo_contacto
+        %td.hidden-phone= compra.fecha.strftime('%d/%m/%y')
 
+:javascript
+  $("tr[data-link]").css({'cursor': 'pointer'});
+  $("tr[data-link]").click(function() {
+    window.location = $(this).data("link")
+  })
 = will_paginate @compras
