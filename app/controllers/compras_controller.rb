@@ -32,7 +32,7 @@ class ComprasController < ApplicationController
   # GET /compras/1
   # GET /compras/1.json
   def show
-    @compra = Compra.find(params[:id])
+    @compra = Compra.find_by_acto(params[:id])
 
     respond_to do |format|
       format.html # show.html.erb
