@@ -1,24 +1,27 @@
+%a.btn.btn-navbar{"data-target" => ".nav-collapse", "data-toggle" => "collapse"}
+  %span.icon-bar
+  %span.icon-bar
+  %span.icon-bar
 = link_to "Panacompra", root_path, :class => 'brand'
-%ul.nav
-  %li.divider-vertical
-  %li= link_to 'Alertas', alerts_path
-  %li.divider-vertical
-  %li= link_to 'Estadisticas', '/stats'
-  %li.divider-vertical
-  %li= link_to 'Exportar Data', 'http://dev507.com/panasnapshot.csv'
-  %li.divider-vertical
-  %li= link_to 'About', '/about'
-%p.nav.navbar-text.pull-right #{@count} compras
-%ul.nav.pull-right
-  %li.divider-vertical
-- if user_signed_in?
-  %p.nav.navbar-text.pull-right
-    = link_to "Logout", destroy_user_session_path, method: :delete
-  %ul.nav.pull-right
+.nav-collapse.collapse
+  %ul.nav
     %li.divider-vertical
+    %li= link_to 'Alertas', alerts_path
+    %li.divider-vertical
+    %li= link_to 'Estadisticas', '/stats'
+    %li.divider-vertical
+    %li= link_to 'Exportar Data', 'http://dev507.com/panasnapshot.csv'
+    %li.divider-vertical
+    %li= link_to 'About', '/about'
   %p.nav.navbar-text.pull-right
-    Hola
-    = current_user.email
-- else
-  %p.nav.navbar-text.pull-right
-    = link_to "Login", new_user_session_path
+  %ul.nav.pull-right
+    - if user_signed_in?
+      %p.nav.navbar-text= link_to "Logout", destroy_user_session_path, method: :delete
+      %li.divider-vertical
+      %p.nav.navbar-text
+        Hola
+        = current_user.email
+    - else
+      %p.nav.navbar-text= link_to "Login", new_user_session_path
+    %li.divider-vertical
+    %p.nav.navbar-text= @count.to_s + ' compras'
