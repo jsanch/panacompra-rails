@@ -19,6 +19,7 @@ class ComprasController < ApplicationController
     stats
     @compras = @compras.paginate(page: params[:page])
     @entidades = Rails.cache.fetch("entidades", :expires_in => 1.day ) {Compra.select("DISTINCT(ENTIDAD)").map{|x| x.entidad}.sort}
+    @compra_type = Rails.cache.fetch("compra_type", :expires_in => 1.day ) {Compra.select("DISTINCT(COMPRA_TYPE)").select{|x| x.compra_type != 'Licitaciуn Pъblica'}.map{|x| x.compra_type }.sort}
     @categories = Category.all
     record_query
 
@@ -151,12 +152,26 @@ class ComprasController < ApplicationController
     end
   end
 
+  def filter_objeto
+    if params[:objeto] and params[:objeto] != '' then
+      @compras = @compras.where("objeto = ?", params[:objeto])
+    end
+  end
+
+  def filter_compra_type
+    if params[:compra_type] and params[:compra_type] != '' then
+      @compras = @compras.where("compra_type = ?", params[:compra_type])
+    end
+  end
+
   def filter_compras
     filter_fecha
     filter_price
     filter_proponente
     filter_acto
     filter_modalidad
+    filter_objeto
+    filter_compra_type
     @compras = @compras.where('entidad = ?', params[:entidad]) if (params[:entidad] and params[:entidad] != '')
     @compras = @compras.where('category_id = ?', params[:category]) if (params[:category] and params[:category] != '')
     @compras = @compras.where('proponente = ?', 'empty') if (params[:empty] and params[:empty] != '')

@@ -22,6 +22,16 @@
           Categoria 
         .controls
           = select_tag :category, options_from_collection_for_select(@categories, :id, :name, params[:category]) , prompt: 'Seleccionar Categoria'
+      .control-group.advanced_search
+        %label.control-label{:for => "modalidad"}
+          Tipo de Compra
+        .controls
+          = select_tag :compra_type, options_for_select(@compra_type, params[:compra_type]), prompt: 'Seleccionar Tipo de Compra'
+      .control-group.advanced_search
+        %label.control-label{:for => "objeto"}
+          Objeto
+        .controls
+          = select_tag :objeto, options_for_select(['Bien','Serivicio','Obra'], params[:objeto]), prompt: 'Seleccionar Objeto'
     .span5
       .control-group
         %label.control-label{:for => "proponente"}
