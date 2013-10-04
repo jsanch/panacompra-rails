@@ -12,6 +12,7 @@ class Compra < ActiveRecord::Base
   validates_presence_of :url
   validates_presence_of :description
   validates_presence_of :precio
+  validates_presence_of :precio_cd
   validates_presence_of :correo_contacto
 
   belongs_to :category
