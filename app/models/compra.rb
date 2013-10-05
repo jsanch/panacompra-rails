@@ -1,5 +1,5 @@
 class Compra < ActiveRecord::Base
-  attr_accessible :acto, :description, :entidad, :fecha, :precio, :proponente, :url, :category_id, :modalidad, :dependencia, :provincia, :compra_type, :nombre_contacto, :telefono_contacto, :correo_contacto, :objeto, :unidad 
+  attr_accessible :acto, :description, :entidad, :fecha, :precio, :proponente, :url, :category_id, :modalidad, :dependencia, :provincia, :compra_type, :nombre_contacto, :telefono_contacto, :correo_contacto, :objeto, :unidad, :precio_cd 
 
   validates_uniqueness_of :acto
   validates_uniqueness_of :url
