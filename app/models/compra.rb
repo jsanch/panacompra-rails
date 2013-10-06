@@ -1,5 +1,5 @@
 class Compra < ActiveRecord::Base
-  default_scope where('parsed = true and fecha is not null')
+  #default_scope where('parsed = true and fecha is not null')
   attr_accessible :acto, :description, :entidad, :fecha, :precio, :proponente, :url, :category_id, :modalidad, :dependencia, :provincia, :compra_type, :nombre_contacto, :telefono_contacto, :correo_contacto, :objeto, :unidad, :precio_cd 
 
   validates_uniqueness_of :acto
