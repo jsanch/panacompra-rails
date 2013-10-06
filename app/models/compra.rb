@@ -1,4 +1,5 @@
 class Compra < ActiveRecord::Base
+  default_scope where('parsed = true and fecha is not null')
   attr_accessible :acto, :description, :entidad, :fecha, :precio, :proponente, :url, :category_id, :modalidad, :dependencia, :provincia, :compra_type, :nombre_contacto, :telefono_contacto, :correo_contacto, :objeto, :unidad, :precio_cd 
 
   validates_uniqueness_of :acto
@@ -21,7 +22,7 @@ class Compra < ActiveRecord::Base
   include PgSearch
   pg_search_scope :search, against: [:description, :proponente],
     using: {
-      tsearch: {dictionary: 'spanish', prefix: true, tsvector_column: 'tsv_description'},
+      tsearch: { tsvector_column: 'tsv_description'},
     },
     ignoring: :accents
 

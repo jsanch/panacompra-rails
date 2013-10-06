@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20131004025521) do
+ActiveRecord::Schema.define(:version => 20131006041800) do
 
   create_table "alerts", :force => true do |t|
     t.string   "entidad"
@@ -54,6 +54,9 @@ ActiveRecord::Schema.define(:version => 20131004025521) do
     t.string   "unidad"
     t.string   "provincia"
     t.decimal  "precio_cd",         :precision => 8, :scale => 2
+    t.boolean  "parsed"
+    t.boolean  "visited"
+    t.text     "html"
   end
 
   add_index "compras", ["tsv_description"], :name => "compras_description"
