@@ -22,7 +22,7 @@ class Compra < ActiveRecord::Base
   include PgSearch
   pg_search_scope :search, against: [:description, :proponente],
     using: {
-      tsearch: { tsvector_column: 'tsv_description'},
+      tsearch: { tsvector_column: 'tsv_description', :dictionary => "spanish"},
     },
     ignoring: :accents
 
