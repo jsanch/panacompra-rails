@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20131006041800) do
+ActiveRecord::Schema.define(:version => 20131007141427) do
 
   create_table "alerts", :force => true do |t|
     t.string   "entidad"
@@ -31,7 +31,7 @@ ActiveRecord::Schema.define(:version => 20131006041800) do
 
   create_table "compras", :force => true do |t|
     t.string   "entidad"
-    t.decimal  "precio"
+    t.decimal  "precio",            :precision => 16, :scale => 2
     t.string   "proponente"
     t.integer  "categoria"
     t.string   "url"
@@ -39,8 +39,8 @@ ActiveRecord::Schema.define(:version => 20131006041800) do
     t.text     "description"
     t.string   "acto"
     t.integer  "compra_id"
-    t.datetime "created_at",                                      :null => false
-    t.datetime "updated_at",                                      :null => false
+    t.datetime "created_at",                                       :null => false
+    t.datetime "updated_at",                                       :null => false
     t.integer  "category_id"
     t.boolean  "done"
     t.tsvector "tsv_description"
@@ -53,7 +53,7 @@ ActiveRecord::Schema.define(:version => 20131006041800) do
     t.string   "modalidad"
     t.string   "unidad"
     t.string   "provincia"
-    t.decimal  "precio_cd",         :precision => 8, :scale => 2
+    t.decimal  "precio_cd",         :precision => 16, :scale => 2
     t.boolean  "parsed"
     t.boolean  "visited"
     t.text     "html"
