@@ -35,7 +35,7 @@
       %tr{:data=> {:link=> compra_path(compra)}}
         %td= compra.entidad.titleize.html_safe
         %td= compra.precio > 0 ? number_to_currency(compra.precio) : number_to_currency(compra.precio_cd)
-        %td= compra.proponente.titleize.html_safe if compra.proponente != 'empty'
+        %td= compra.proponente.titleize.html_safe if compra.proponente and compra.proponente != 'empty'
         %td.hidden-phone= compra.description.humanize.html_safe
         %td.hidden-phone= compra.correo_contacto
         %td.hidden-phone= compra.fecha.strftime('%d/%m/%y')
